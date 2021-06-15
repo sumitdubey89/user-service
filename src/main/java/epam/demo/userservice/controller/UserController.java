@@ -6,6 +6,7 @@ import javax.jws.soap.SOAPBinding;
 import epam.demo.userservice.model.User;
 import epam.demo.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -15,6 +16,9 @@ public class UserController {
 
 	@Autowired
 	UserRepository userRepository;
+
+	@Value("${my.greetings}")
+	private String myGreetings;
 
 	@GetMapping("/users")
 	public List<User> getAllUsers(){
@@ -29,7 +33,7 @@ public class UserController {
 	@PostMapping("/users")
 	public String saveUserDetails(@RequestBody final User user){
 		userRepository.save(user);
-		return ("The entry for the User is saved as follows : "+user.toString());
+		return (myGreetings+"!! The entry for the User is saved as follows : "+user.toString());
 	}
 
 	@DeleteMapping("/users/{user_id}")
