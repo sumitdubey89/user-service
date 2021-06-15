@@ -17,3 +17,10 @@ with any Bean we can use
 
 <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version> is added to avoid mentioning the version 
 for all dependencies and pick from the universal one
+
+writing @EnableEurekaClient along with @springBootApplication is not required.
+Just add the below dependency and you are good to go
+<dependency>
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+</dependency>
